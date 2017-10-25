@@ -1,24 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using pdx_ymltranslator.Util;
 
 namespace pdx_ymltranslator
 {
-
     public partial class FrmTranslator : Form
     {
-        private void Mainfrm_Load(object sender, EventArgs e)
+        List<YML> YMLText;
+        Dictionary<string, string> UserDict = new Dictionary<string, string>();
+        Dictionary<string, string> OldVersionDict = new Dictionary<string, string>();
+        ToolTip ToolTiptt = new ToolTip();
+
+        public FrmTranslator()
         {
+            InitializeComponent();
+
             FormInit();
             FunRefresh();
             UserDictInitialize();
             SetToolTip();
             ComBOldVersionInitialize();
+
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         private void SetToolTip()
@@ -33,7 +43,7 @@ namespace pdx_ymltranslator
         private void ComBOldVersionInitialize()
         {
             CombOldVersion.Enabled = false;
-            if (!Directory.Exists(StaticVars.DirOldBase)) { return; }
+            if (Directory.Exists(StaticVars.DirOldBase) == false) { return; }
 
             string[] DirinOldlist = Directory.GetDirectories(StaticVars.DirOldBase);
             if (DirinOldlist.Length > 0)
@@ -44,9 +54,13 @@ namespace pdx_ymltranslator
                     CombOldVersion.Items.Add(Path.GetFileName(str).ToString());
                 }
             }
-            else { return; }
+            else
+            {
+                return;
+            }
             CombOldVersion.SelectedIndex = 0;
         }
+
         private void ComBLoad()
         {
             BuildOldVersionDict();
@@ -101,13 +115,11 @@ namespace pdx_ymltranslator
             reader.Close();
         }
 
-        List<YML> YMLText;
-        Dictionary<string, string> UserDict = new Dictionary<string, string>();
-        Dictionary<string, string> OldVersionDict = new Dictionary<string, string>();
-        ToolTip ToolTiptt = new ToolTip();
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            FuncSave();
+        }
 
-
-        private void BtnSave_Click(object sender, EventArgs e) { FuncSave(); }
         private void FuncSave()
         {
             List<string> lstWriteback = MakeWriteBackList();
@@ -117,6 +129,7 @@ namespace pdx_ymltranslator
             BtnSave.Enabled = false;
             // 保存文件
         }
+
         private List<string> MakeWriteBackList()
         {
             List<string> lstWriteback = new List<string>();
@@ -129,16 +142,19 @@ namespace pdx_ymltranslator
             }
             return lstWriteback;
         }
+
         private void WriteEngFile(List<string> lstWriteback)
         {
             lstWriteback[0] = lstWriteback[0].Replace("l_simp_chinese", "l_english");
             File.WriteAllText(StaticVars.DIRCNen + LstFiles.Text.Replace("l_simp_chinese", "l_english"), BuildWritebackString(lstWriteback.ToArray()), Encoding.UTF8);
         }
+
         private void WriteChnFile(List<string> lstWriteback)
         {
             lstWriteback[0] = lstWriteback[0].Replace("l_english", "l_simp_chinese");
             File.WriteAllText(StaticVars.DIRCNcn + LstFiles.Text.Replace("l_english", "l_simp_chinese"), BuildWritebackString(lstWriteback.ToArray()), Encoding.UTF8);
         }
+
         private string BuildWritebackString(string[] a)
         {
             var builder = new StringBuilder();
@@ -165,23 +181,12 @@ namespace pdx_ymltranslator
 
         private void FormInit()
         {
-            if (!Directory.Exists(StaticVars.DIREN))
-            {
-                Directory.CreateDirectory(StaticVars.DIREN);
-            }
-            if (!Directory.Exists(StaticVars.DIRCN))
-            {
-                Directory.CreateDirectory(StaticVars.DIRCN);
-            }
-            if (!Directory.Exists(StaticVars.DIRCNen))
-            {
-                Directory.CreateDirectory(StaticVars.DIRCNen);
-            }
-            if (!Directory.Exists(StaticVars.DIRCNcn))
-            {
-                Directory.CreateDirectory(StaticVars.DIRCNcn);
-            }
+            Directory.CreateDirectory(StaticVars.DIREN);
+            Directory.CreateDirectory(StaticVars.DIRCN);
+            Directory.CreateDirectory(StaticVars.DIRCNen);
+            Directory.CreateDirectory(StaticVars.DIRCNcn);
         }
+
         private void FunRefresh()
         {
             string[] stringList = Directory.GetFiles(StaticVars.DIREN, "*.yml");
@@ -234,16 +239,27 @@ namespace pdx_ymltranslator
                 row.HeaderCell.Value = (row.Index + 1).ToString();
                 if (YMLText.ElementAt(row.Index).OldNewisDifferent())
                 {
-                    if (YMLText.ElementAt(row.Index).OldENG != "") { row.Cells[1].Style.BackColor = Color.LightSalmon; }
-                    if (YMLText.ElementAt(row.Index).OldENG == "") { row.Cells[1].Style.BackColor = Color.LightSkyBlue; }
+                    if (YMLText.ElementAt(row.Index).OldENG != "")
+                    {
+                        row.Cells[1].Style.BackColor = Color.LightSalmon;
+                    }
+
+                    if (YMLText.ElementAt(row.Index).OldENG == "")
+                    {
+                        row.Cells[1].Style.BackColor = Color.LightSkyBlue;
+                    }
                 }
                 else
                 {
                     row.Cells[1].Style.BackColor = Color.White;
                 }
+
                 if (YMLText.ElementAt(row.Index).SameInToAndFrom())
                 {
-                    if (YMLText.ElementAt(row.Index).IsAllQoute() == false) { row.Cells[2].Style.BackColor = Color.LightCyan; }
+                    if (YMLText.ElementAt(row.Index).IsAllQoute() == false)
+                    {
+                        row.Cells[2].Style.BackColor = Color.LightCyan;
+                    }
                 }
             }
         }
@@ -320,18 +336,16 @@ namespace pdx_ymltranslator
             }
         }
 
-        public FrmTranslator()
-        {
-            InitializeComponent();
-        }
         private void Mainfrm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
+
         private void TxtCHN_Enter(object sender, EventArgs e)
         {
             TxtCHN.SelectAll();
         }
+
         private void TxtCHN_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.A && e.Modifiers == Keys.Control)
@@ -398,6 +412,7 @@ namespace pdx_ymltranslator
                 e.Handled = true;
             }
         }
+
         private void BtnAPItochnBox_Click(object sender, EventArgs e)
         {
             TxtCHN.Text = TxtAPI.Text;
@@ -451,77 +466,27 @@ namespace pdx_ymltranslator
                 YMLTools.OpenWithBrowser(TxtENG.Text, "Google");
             }
         }
-        
+
         private void FuncInsertSign(string SignToInsert)
         {
-            if (TxtCHN.SelectedText == "")
+            var text = TxtCHN.SelectedText;
+            var suffix = "§!";
+
+            if (string.IsNullOrEmpty(text) == false || SignToInsert.Equals("!"))
             {
-                TxtCHN.SelectedText = "§" + SignToInsert;
+                var prefix = "§" + SignToInsert;
+                TxtCHN.SelectedText = prefix + text + suffix;
             }
             else
             {
-                TxtCHN.SelectedText = "§" + SignToInsert + TxtCHN.SelectedText + "§!";
+                TxtCHN.SelectedText += suffix;
             }
         }
 
-        private void LabColorR_Click(object sender, EventArgs e)
+        private void LabColor_Click(object sender, EventArgs e)
         {
-            FuncInsertSign("R");
-        }
-
-        private void LabColorG_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("G");
-        }
-
-        private void LabColorB_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("B");
-        }
-
-        private void LabColorH_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("H");
-        }
-
-        private void LabColorL_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("L");
-        }
-
-        private void LabColorS_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("S");
-        }
-
-        private void LabColorM_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("M");
-        }
-
-        private void LabColorGx_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("g");
-        }
-
-        private void LabColorW_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("W");
-        }
-
-        private void LabColorY_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("Y");
-        }
-
-        private void LabColorE_Click(object sender, EventArgs e)
-        {
-            FuncInsertSign("E");
-        }
-
-        private void LabColorEnd_Click(object sender, EventArgs e)
-        {
-            TxtCHN.SelectedText = "§!";
+            Button button = (Button)sender;
+            FuncInsertSign(button.Text);
         }
 
         private void LabHelp_DoubleClick(object sender, EventArgs e)
@@ -532,16 +497,6 @@ namespace pdx_ymltranslator
         private void CombOldVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComBLoad();
-        }
-
-        private void FrmTranslator_SizeChanged(object sender, EventArgs e)
-        {
-            DfData.Height = Height - 295;
-            DfData.Width = Width - 215;
-            LstFiles.Height = Height - 295;
-            TxtCHN.Width = Width - 260;
-            TxtENG.Width = Width - 260;
-            TxtAPI.Width = Width - 260;
         }
 
         private void ChkSimplifiedChinese_CheckedChanged(object sender, EventArgs e)

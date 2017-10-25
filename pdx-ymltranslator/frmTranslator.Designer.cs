@@ -60,7 +60,6 @@
             this.LabColorS = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LabColorEnd = new System.Windows.Forms.Label();
-            this.LabHelp = new System.Windows.Forms.Label();
             this.CombOldVersion = new System.Windows.Forms.ComboBox();
             this.ChkSaveOnlyTranslated = new System.Windows.Forms.CheckBox();
             this.ChkSimplifiedChinese = new System.Windows.Forms.CheckBox();
@@ -70,13 +69,15 @@
             this.BtnMergeAll = new System.Windows.Forms.Button();
             this.ChkCRLF = new System.Windows.Forms.CheckBox();
             this.RadioNone = new System.Windows.Forms.RadioButton();
+            this.LabHelp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DfData)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TxtAPI
             // 
-            this.TxtAPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtAPI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtAPI.Font = new System.Drawing.Font("宋体", 10F);
             this.TxtAPI.Location = new System.Drawing.Point(3, 720);
             this.TxtAPI.Multiline = true;
@@ -85,7 +86,7 @@
             this.TxtAPI.Size = new System.Drawing.Size(840, 80);
             this.TxtAPI.TabIndex = 3;
             this.TxtAPI.TabStop = false;
-            this.TxtAPI.Text = "Baidu API";
+            this.TxtAPI.Text = "选择自动机翻类型来启用机翻功能。自动机翻只取用百度。";
             this.TxtAPI.DoubleClick += new System.EventHandler(this.TxtAPI_DoubleClick);
             this.TxtAPI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAPI_KeyDown);
             // 
@@ -104,6 +105,8 @@
             // 
             // LstFiles
             // 
+            this.LstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LstFiles.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstFiles.FormattingEnabled = true;
             this.LstFiles.ItemHeight = 12;
@@ -139,6 +142,9 @@
             // 
             // DfData
             // 
+            this.DfData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DfData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -179,7 +185,8 @@
             // 
             // TxtENG
             // 
-            this.TxtENG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtENG.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtENG.Font = new System.Drawing.Font("宋体", 10F);
             this.TxtENG.Location = new System.Drawing.Point(3, 555);
             this.TxtENG.Multiline = true;
@@ -193,7 +200,8 @@
             // 
             // TxtCHN
             // 
-            this.TxtCHN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtCHN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtCHN.Font = new System.Drawing.Font("宋体", 10F);
             this.TxtCHN.Location = new System.Drawing.Point(3, 637);
             this.TxtCHN.Multiline = true;
@@ -310,7 +318,7 @@
             this.LabColorR.Size = new System.Drawing.Size(14, 14);
             this.LabColorR.TabIndex = 21;
             this.LabColorR.Text = "R";
-            this.LabColorR.Click += new System.EventHandler(this.LabColorR_Click);
+            this.LabColorR.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorG
             // 
@@ -323,7 +331,7 @@
             this.LabColorG.Size = new System.Drawing.Size(14, 14);
             this.LabColorG.TabIndex = 22;
             this.LabColorG.Text = "G";
-            this.LabColorG.Click += new System.EventHandler(this.LabColorG_Click);
+            this.LabColorG.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorH
             // 
@@ -336,7 +344,7 @@
             this.LabColorH.Size = new System.Drawing.Size(14, 14);
             this.LabColorH.TabIndex = 23;
             this.LabColorH.Text = "H";
-            this.LabColorH.Click += new System.EventHandler(this.LabColorH_Click);
+            this.LabColorH.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorW
             // 
@@ -349,7 +357,7 @@
             this.LabColorW.Size = new System.Drawing.Size(14, 14);
             this.LabColorW.TabIndex = 24;
             this.LabColorW.Text = "W";
-            this.LabColorW.Click += new System.EventHandler(this.LabColorW_Click);
+            this.LabColorW.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorL
             // 
@@ -362,7 +370,7 @@
             this.LabColorL.Size = new System.Drawing.Size(14, 14);
             this.LabColorL.TabIndex = 25;
             this.LabColorL.Text = "L";
-            this.LabColorL.Click += new System.EventHandler(this.LabColorL_Click);
+            this.LabColorL.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorGx
             // 
@@ -375,7 +383,7 @@
             this.LabColorGx.Size = new System.Drawing.Size(14, 14);
             this.LabColorGx.TabIndex = 26;
             this.LabColorGx.Text = "g";
-            this.LabColorGx.Click += new System.EventHandler(this.LabColorGx_Click);
+            this.LabColorGx.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorB
             // 
@@ -388,7 +396,7 @@
             this.LabColorB.Size = new System.Drawing.Size(14, 14);
             this.LabColorB.TabIndex = 27;
             this.LabColorB.Text = "B";
-            this.LabColorB.Click += new System.EventHandler(this.LabColorB_Click);
+            this.LabColorB.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorM
             // 
@@ -401,7 +409,7 @@
             this.LabColorM.Size = new System.Drawing.Size(14, 14);
             this.LabColorM.TabIndex = 28;
             this.LabColorM.Text = "M";
-            this.LabColorM.Click += new System.EventHandler(this.LabColorM_Click);
+            this.LabColorM.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorY
             // 
@@ -414,7 +422,7 @@
             this.LabColorY.Size = new System.Drawing.Size(14, 14);
             this.LabColorY.TabIndex = 29;
             this.LabColorY.Text = "Y";
-            this.LabColorY.Click += new System.EventHandler(this.LabColorY_Click);
+            this.LabColorY.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorE
             // 
@@ -427,7 +435,7 @@
             this.LabColorE.Size = new System.Drawing.Size(14, 14);
             this.LabColorE.TabIndex = 30;
             this.LabColorE.Text = "E";
-            this.LabColorE.Click += new System.EventHandler(this.LabColorE_Click);
+            this.LabColorE.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // LabColorS
             // 
@@ -440,7 +448,7 @@
             this.LabColorS.Size = new System.Drawing.Size(14, 14);
             this.LabColorS.TabIndex = 31;
             this.LabColorS.Text = "S";
-            this.LabColorS.Click += new System.EventHandler(this.LabColorS_Click);
+            this.LabColorS.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // groupBox1
             // 
@@ -481,19 +489,7 @@
             this.LabColorEnd.Size = new System.Drawing.Size(14, 14);
             this.LabColorEnd.TabIndex = 32;
             this.LabColorEnd.Text = "!";
-            this.LabColorEnd.Click += new System.EventHandler(this.LabColorEnd_Click);
-            // 
-            // LabHelp
-            // 
-            this.LabHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabHelp.AutoSize = true;
-            this.LabHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.LabHelp.Location = new System.Drawing.Point(937, 636);
-            this.LabHelp.Name = "LabHelp";
-            this.LabHelp.Size = new System.Drawing.Size(29, 12);
-            this.LabHelp.TabIndex = 33;
-            this.LabHelp.Text = "Help";
-            this.LabHelp.DoubleClick += new System.EventHandler(this.LabHelp_DoubleClick);
+            this.LabColorEnd.Click += new System.EventHandler(this.LabColor_Click);
             // 
             // CombOldVersion
             // 
@@ -605,6 +601,18 @@
             this.RadioNone.Text = "不使用";
             this.RadioNone.UseVisualStyleBackColor = true;
             // 
+            // LabHelp
+            // 
+            this.LabHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabHelp.AutoSize = true;
+            this.LabHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.LabHelp.Location = new System.Drawing.Point(937, 636);
+            this.LabHelp.Name = "LabHelp";
+            this.LabHelp.Size = new System.Drawing.Size(29, 12);
+            this.LabHelp.TabIndex = 33;
+            this.LabHelp.Text = "Help";
+            this.LabHelp.DoubleClick += new System.EventHandler(this.LabHelp_DoubleClick);
+            // 
             // FrmTranslator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -643,8 +651,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YML Translator";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainfrm_FormClosed);
-            this.Load += new System.EventHandler(this.Mainfrm_Load);
-            this.SizeChanged += new System.EventHandler(this.FrmTranslator_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Translatorfrm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DfData)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -684,7 +690,6 @@
         private System.Windows.Forms.Label LabColorS;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label LabColorEnd;
-        private System.Windows.Forms.Label LabHelp;
         private System.Windows.Forms.ComboBox CombOldVersion;
         private System.Windows.Forms.CheckBox ChkSaveOnlyTranslated;
         private System.Windows.Forms.CheckBox ChkSimplifiedChinese;
@@ -694,6 +699,7 @@
         private System.Windows.Forms.Button BtnMergeAll;
         private System.Windows.Forms.CheckBox ChkCRLF;
         private System.Windows.Forms.RadioButton RadioNone;
+        private System.Windows.Forms.Label LabHelp;
     }
 }
 
