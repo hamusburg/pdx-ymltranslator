@@ -12,26 +12,6 @@ namespace pdx_ymltranslator.Util
 {
     public static class YMLTools
     {
-        private static TranslationResult GetTranslationFromBaiduFanyi(string q)
-        {
-            WebClient wc = new WebClient();
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            TranslationResult result = jss.Deserialize<TranslationResult>(wc.DownloadString("http://fanyi.baidu.com/transapi?from=en&to=zh&query=" + WebUtility.UrlEncode(q)));
-            return result;
-            //解析json
-        }
-
-        public static string GetTranslatedTextFromAPI(string TexttoTranslate)
-        {
-            if (TexttoTranslate != "")
-            {
-                TranslationResult result = GetTranslationFromBaiduFanyi(TexttoTranslate);
-                return result.Data[0].Dst;
-            }
-            return "Nothing";
-        }
-        // 用于从baidu 翻译API获取翻译。
-
         public static string RegexGetWith(string RegText, string RegexRule)
         {
             Regex Reggetname = new Regex(RegexRule, RegexOptions.None);
@@ -44,27 +24,33 @@ namespace pdx_ymltranslator.Util
             }
             return returnString.ToString();
         }
+
         public static string RegexGetName(string RegText)
         {
             return RegexGetWith(RegText, "(^.*?):.*?(?=\")");
         }
+
         public static string RegexGetValue(string RegText)
         {
             return RegexGetWith(RegText, "(?<=(\\s\")).+(?=\")");
         }
+
         public static string RegexGetNameOnly(string RegText)
         {
             RegText = RegText.Replace(" ", "");
             return RegexGetWith(RegText, "^.*(?=:)");
         }
+
         public static string RegexRemoveColorSign(string RegText)
         {
             return RegexGetWith(RegText, "(?<=(§.)).+(?=(§!))");
         }
+
         private static string RegexStringWordBoundry(string input)
         {
             return @"(\W|^)" + input + @"(\W|$)";
         }
+
         public static bool RegexContainsWord(string input, string WordToMatch)
         {
             if (Regex.IsMatch(input, RegexStringWordBoundry(WordToMatch), RegexOptions.IgnoreCase)) { return true; }

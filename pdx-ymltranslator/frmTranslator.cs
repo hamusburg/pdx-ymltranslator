@@ -332,7 +332,7 @@ namespace pdx_ymltranslator
 
             string FuncAsyncGetTranslation()
             {
-                return YMLTools.GetTranslatedTextFromAPI(YMLTools.RemoveReturnMark(TxtENG.Text));
+                return BaiduAPI.GetTranslatedResult(YMLTools.RemoveReturnMark(TxtENG.Text));
             }
         }
 

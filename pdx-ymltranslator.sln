@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdx-ymlTranslator", "pdx-ymlTranslator\pdx-ymlTranslator.csproj", "{42CC41FE-37A0-4A35-B999-A7F0221AF153}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pdx-ymlTranslator", "pdx-ymltranslator\pdx-ymlTranslator.csproj", "{42CC41FE-37A0-4A35-B999-A7F0221AF153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BE48188-1406-47B7-A3AB-15C0A31FB71A}
 	EndGlobalSection
 EndGlobal
