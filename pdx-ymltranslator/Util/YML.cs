@@ -12,26 +12,27 @@ namespace pdx_ymltranslator.Util
         private string variablenamewithoutnum;
         private string oldeng;
         private int lineindex = 0;
+
         public YML()
         {
-            lineeng = "";
-            linechn = "";
-            veng = "";
-            vchn = "";
-            variablename = "";
-            variablenamewithoutnum = "";
-            oldeng = "";
+            lineeng = string.Empty;
+            linechn = string.Empty;
+            veng = string.Empty;
+            vchn = string.Empty;
+            variablename = string.Empty;
+            variablenamewithoutnum = string.Empty;
+            oldeng = string.Empty;
         }
 
         public YML(string LineTo) : this()
         {
             LineCHN = LineTo;
-            LineENG = "";
+            LineENG = string.Empty;
             variablename = YMLTools.RegexGetName(LineTo);
             variablenamewithoutnum = YMLTools.RegexGetNameOnly(variablename);
             vchn = YMLTools.RegexGetValue(LineTo);
             if (HasError()) { FixError(); }
-            oldeng = "";
+            oldeng = string.Empty;
         }
 
         public YML(string LineFrom, Dictionary<string, string> DictForTo) : this()
@@ -41,28 +42,33 @@ namespace pdx_ymltranslator.Util
             variablenamewithoutnum = YMLTools.RegexGetNameOnly(variablename);
             veng = YMLTools.RegexGetValue(LineFrom);
 
-            if (VariableNameWithoutNum != "" && DictForTo.TryGetValue(VariableNameWithoutNum, out string outvalue) && outvalue != "")
+            if (string.IsNullOrEmpty(VariableNameWithoutNum) == false
+                && DictForTo.TryGetValue(VariableNameWithoutNum, out string outvalue)
+                && string.IsNullOrEmpty(outvalue) == false)
             {
                 LineCHN = outvalue;
-                //vchn = YMLTools.RegexGetValue(outvalue);
             }
             else
             {
                 LineCHN = LineFrom;
-                //vchn = YMLTools.RegexGetValue(LineFrom);
             }
 
             if (HasError()) { FixError(); }
-            oldeng = "";
+            oldeng = string.Empty;
         }
 
         public void LoadWithOldDict(Dictionary<string, string> OldDict)
         {
-            if (VariableNameWithoutNum != "" && OldDict.TryGetValue(VariableNameWithoutNum, out string outvalue) && outvalue != "")
+            if (string.IsNullOrEmpty(VariableNameWithoutNum) == false
+                && OldDict.TryGetValue(VariableNameWithoutNum, out string outvalue)
+                && string.IsNullOrEmpty(outvalue) == false)
             {
                 oldeng = YMLTools.RegexGetValue(outvalue);
             }
-            else { oldeng = ""; }
+            else
+            {
+                oldeng = string.Empty;
+            }
         }
 
         public void LineIndexInitialize(int inputLineIndex)
@@ -72,27 +78,17 @@ namespace pdx_ymltranslator.Util
 
         public string VariableNameWithoutNum
         {
-            get
-            {
-                return variablenamewithoutnum;
-            }
+            get { return variablenamewithoutnum; }
         }
 
         public string VENG
         {
-            get
-            {
-                if (IsComment()) { return lineeng; }
-                return veng;
-            }
+            get { if (IsComment()) { return lineeng; } else { return veng; } }
         }
 
         public string VCHN
         {
-            get
-            {
-                return vchn;
-            }
+            get { return vchn; }
         }
         public string OldENG
         {
@@ -103,9 +99,20 @@ namespace pdx_ymltranslator.Util
         {
             get
             {
-                if (IsLineWithComment()) { return LineCHN.Replace(TestComment(), variablename + "\"" + vchn + "\""); }
-                if (variablename != "") { return variablename + "\"" + vchn + "\""; }
-                else { return linechn; }
+                if (IsLineWithComment())
+                {
+                    return LineCHN.Replace(TestComment(), variablename + "\"" + vchn + "\"");
+                }
+
+                if (variablename != "")
+                {
+                    return variablename + "\"" + vchn + "\"";
+                }
+
+                else
+                {
+                    return linechn;
+                }
             }
         }
 
@@ -143,8 +150,14 @@ namespace pdx_ymltranslator.Util
 
         public void ApplyLine(string ApplyText)
         {
-            if (IsComment()) { linechn = ApplyText; }
-            else { vchn = ApplyText; }
+            if (IsComment())
+            {
+                linechn = ApplyText;
+            }
+            else
+            {
+                vchn = ApplyText;
+            }
             vchn = ApplyText;
         }
 
@@ -164,36 +177,17 @@ namespace pdx_ymltranslator.Util
 
         private bool IsComment()
         {
-            if (YMLTools.RemoveSpace(LineCHN).Length > 0)
-            {
-                if (YMLTools.RemoveSpace(LineCHN).Substring(0, 1) == "#") { return true; }
-            }
-            return false;
+            return YMLTools.RemoveSpace(LineCHN).Length > 0 && YMLTools.RemoveSpace(LineCHN)[0] == '#';
         }
 
         private bool IsSpaceLine()
         {
-            if (LineCHN.Replace(" ", "") == "") { return true; }
-            return false;
+            return string.IsNullOrEmpty(LineCHN.Trim());
         }
 
         public bool IsEditable()
         {
-            if (IsSpaceLine())
-            {
-                return false;
-            }
-
-            if (YMLTools.RemoveSpace(LineCHN) == "l_english:")
-            {
-                return false;
-            }
-
-            if (IsComment())
-            {
-                return false;
-            }
-            return true;
+            return (IsSpaceLine() || YMLTools.RemoveSpace(LineCHN) == "l_english:" || IsComment()) == false;
         }
 
         private string TestComment()
@@ -203,27 +197,17 @@ namespace pdx_ymltranslator.Util
 
         private bool IsLineWithComment()
         {
-            if (LineCHN.Replace(TestComment(), "").Replace(" ", "") != "")
-            {
-                return true;
-            }
-            return false;
+            return LineCHN.Replace(TestComment(), "").Replace(" ", "") != "";
         }
 
         private bool HasError()
         {
-            if (variablename != "" && vchn == "" && LineCHN != LineENG)
-            { return true; }
-            return false;
+            return variablename != "" && vchn == "" && LineCHN != LineENG;
         }
 
         public bool SameInToAndFrom()
         {
-            if (IsEditable() && veng == vchn && veng != "")
-            {
-                return true;
-            }
-            return false;
+            return IsEditable() && veng == vchn && veng != "";
         }
 
         public bool IsAllQoute()
@@ -238,23 +222,18 @@ namespace pdx_ymltranslator.Util
                 text = YMLTools.RemoveSpace(text);
                 if (text.Length > 0)
                 {
-                    string first = text.Substring(0, 1);
-                    string end = text.Substring(text.Length - 1);
-                    if (first == "$" && end == "$") { return true; }
-                    if (first == "[" && end == "]") { return true; }
+                    char fst = text[0];
+                    char end = text[text.Length - 1];
+                    if (fst == '$' && end == '$') { return true; }
+                    if (fst == '[' && end == ']') { return true; }
                 }
-
-                //if (first == "§" && text.Substring(text.Length - 2) == "§!")
-                //{
-                //    if (IsAllQoute(YMLTools.RegexRemoveColorSign(text))) { return true; }
-                //}
             }
             return false;
         }
+
         public bool OldNewisDifferent()
         {
-            if (YMLTools.RemoveSpace(oldeng) == YMLTools.RemoveSpace(veng)) { return false; }
-            return true;
+            return YMLTools.RemoveSpace(oldeng) != YMLTools.RemoveSpace(veng);
         }
     }
 }

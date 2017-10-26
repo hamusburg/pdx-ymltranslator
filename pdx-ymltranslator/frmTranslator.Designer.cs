@@ -35,12 +35,10 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.LstFiles = new System.Windows.Forms.ListBox();
             this.LabFROM = new System.Windows.Forms.Label();
-            this.LabTo = new System.Windows.Forms.Label();
             this.DfData = new System.Windows.Forms.DataGridView();
             this.TxtENG = new System.Windows.Forms.TextBox();
             this.TxtCHN = new System.Windows.Forms.TextBox();
             this.BtnApply = new System.Windows.Forms.Button();
-            this.LabAPI = new System.Windows.Forms.Label();
             this.BtnAPItochnBox = new System.Windows.Forms.Button();
             this.BtnOpenFileTranslated = new System.Windows.Forms.Button();
             this.BtnOpenFileOriginal = new System.Windows.Forms.Button();
@@ -69,7 +67,6 @@
             this.BtnMergeAll = new System.Windows.Forms.Button();
             this.ChkCRLF = new System.Windows.Forms.CheckBox();
             this.RadioNone = new System.Windows.Forms.RadioButton();
-            this.LabHelp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DfData)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +91,7 @@
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnSave.Enabled = false;
-            this.BtnSave.Location = new System.Drawing.Point(985, 765);
+            this.BtnSave.Location = new System.Drawing.Point(984, 761);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(97, 34);
             this.BtnSave.TabIndex = 3;
@@ -129,16 +126,6 @@
             this.LabFROM.Size = new System.Drawing.Size(53, 12);
             this.LabFROM.TabIndex = 6;
             this.LabFROM.Text = "自动机翻";
-            // 
-            // LabTo
-            // 
-            this.LabTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabTo.AutoSize = true;
-            this.LabTo.Location = new System.Drawing.Point(853, 636);
-            this.LabTo.Name = "LabTo";
-            this.LabTo.Size = new System.Drawing.Size(53, 12);
-            this.LabTo.TabIndex = 7;
-            this.LabTo.Text = "确认翻译";
             // 
             // DfData
             // 
@@ -218,46 +205,36 @@
             // BtnApply
             // 
             this.BtnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnApply.Location = new System.Drawing.Point(853, 658);
+            this.BtnApply.Location = new System.Drawing.Point(850, 629);
             this.BtnApply.Name = "BtnApply";
-            this.BtnApply.Size = new System.Drawing.Size(94, 34);
+            this.BtnApply.Size = new System.Drawing.Size(118, 34);
             this.BtnApply.TabIndex = 0;
             this.BtnApply.TabStop = false;
-            this.BtnApply.Text = "应用 (Ctrl+Enter)";
+            this.BtnApply.Text = "确认翻译 (Ctrl+Enter)";
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
-            // 
-            // LabAPI
-            // 
-            this.LabAPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabAPI.AutoSize = true;
-            this.LabAPI.Location = new System.Drawing.Point(851, 760);
-            this.LabAPI.Name = "LabAPI";
-            this.LabAPI.Size = new System.Drawing.Size(59, 12);
-            this.LabAPI.TabIndex = 12;
-            this.LabAPI.Text = "Baidu API";
             // 
             // BtnAPItochnBox
             // 
             this.BtnAPItochnBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAPItochnBox.Location = new System.Drawing.Point(855, 708);
+            this.BtnAPItochnBox.Location = new System.Drawing.Point(850, 669);
             this.BtnAPItochnBox.Name = "BtnAPItochnBox";
-            this.BtnAPItochnBox.Size = new System.Drawing.Size(95, 34);
+            this.BtnAPItochnBox.Size = new System.Drawing.Size(118, 34);
             this.BtnAPItochnBox.TabIndex = 13;
             this.BtnAPItochnBox.TabStop = false;
-            this.BtnAPItochnBox.Text = "将机翻内容复制到译文(Ctrl+↑)";
+            this.BtnAPItochnBox.Text = "将机翻复制到译文(Ctrl+↑)";
             this.BtnAPItochnBox.UseVisualStyleBackColor = true;
             this.BtnAPItochnBox.Click += new System.EventHandler(this.BtnAPItochnBox_Click);
             // 
             // BtnOpenFileTranslated
             // 
             this.BtnOpenFileTranslated.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnOpenFileTranslated.Location = new System.Drawing.Point(976, 593);
+            this.BtnOpenFileTranslated.Location = new System.Drawing.Point(976, 584);
             this.BtnOpenFileTranslated.Name = "BtnOpenFileTranslated";
-            this.BtnOpenFileTranslated.Size = new System.Drawing.Size(103, 34);
+            this.BtnOpenFileTranslated.Size = new System.Drawing.Size(103, 25);
             this.BtnOpenFileTranslated.TabIndex = 14;
             this.BtnOpenFileTranslated.TabStop = false;
-            this.BtnOpenFileTranslated.Text = "打开已翻目录";
+            this.BtnOpenFileTranslated.Text = "打开译文文件";
             this.BtnOpenFileTranslated.UseVisualStyleBackColor = true;
             this.BtnOpenFileTranslated.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
@@ -266,10 +243,10 @@
             this.BtnOpenFileOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnOpenFileOriginal.Location = new System.Drawing.Point(976, 553);
             this.BtnOpenFileOriginal.Name = "BtnOpenFileOriginal";
-            this.BtnOpenFileOriginal.Size = new System.Drawing.Size(103, 34);
+            this.BtnOpenFileOriginal.Size = new System.Drawing.Size(103, 25);
             this.BtnOpenFileOriginal.TabIndex = 15;
             this.BtnOpenFileOriginal.TabStop = false;
-            this.BtnOpenFileOriginal.Text = "打开原文目录";
+            this.BtnOpenFileOriginal.Text = "打开原文文件";
             this.BtnOpenFileOriginal.UseVisualStyleBackColor = true;
             this.BtnOpenFileOriginal.Click += new System.EventHandler(this.BtnOpenFileOriginal_Click);
             // 
@@ -469,7 +446,7 @@
             this.groupBox1.Controls.Add(this.LabColorR);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Location = new System.Drawing.Point(969, 636);
+            this.groupBox1.Location = new System.Drawing.Point(971, 612);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
@@ -498,7 +475,7 @@
             this.CombOldVersion.Enabled = false;
             this.CombOldVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CombOldVersion.FormattingEnabled = true;
-            this.CombOldVersion.Location = new System.Drawing.Point(988, 722);
+            this.CombOldVersion.Location = new System.Drawing.Point(984, 695);
             this.CombOldVersion.Name = "CombOldVersion";
             this.CombOldVersion.Size = new System.Drawing.Size(94, 20);
             this.CombOldVersion.TabIndex = 34;
@@ -509,7 +486,7 @@
             // 
             this.ChkSaveOnlyTranslated.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ChkSaveOnlyTranslated.AutoSize = true;
-            this.ChkSaveOnlyTranslated.Location = new System.Drawing.Point(951, 748);
+            this.ChkSaveOnlyTranslated.Location = new System.Drawing.Point(850, 739);
             this.ChkSaveOnlyTranslated.Name = "ChkSaveOnlyTranslated";
             this.ChkSaveOnlyTranslated.Size = new System.Drawing.Size(132, 16);
             this.ChkSaveOnlyTranslated.TabIndex = 35;
@@ -520,7 +497,7 @@
             // 
             this.ChkSimplifiedChinese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ChkSimplifiedChinese.AutoSize = true;
-            this.ChkSimplifiedChinese.Location = new System.Drawing.Point(948, 768);
+            this.ChkSimplifiedChinese.Location = new System.Drawing.Point(1042, 739);
             this.ChkSimplifiedChinese.Name = "ChkSimplifiedChinese";
             this.ChkSimplifiedChinese.Size = new System.Drawing.Size(36, 16);
             this.ChkSimplifiedChinese.TabIndex = 36;
@@ -532,7 +509,7 @@
             // 
             this.ChkTraditionalChinese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ChkTraditionalChinese.AutoSize = true;
-            this.ChkTraditionalChinese.Location = new System.Drawing.Point(948, 783);
+            this.ChkTraditionalChinese.Location = new System.Drawing.Point(1042, 721);
             this.ChkTraditionalChinese.Name = "ChkTraditionalChinese";
             this.ChkTraditionalChinese.Size = new System.Drawing.Size(36, 16);
             this.ChkTraditionalChinese.TabIndex = 37;
@@ -544,12 +521,12 @@
             // 
             this.TxtFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtFind.Font = new System.Drawing.Font("宋体", 10F);
-            this.TxtFind.Location = new System.Drawing.Point(848, 776);
+            this.TxtFind.Location = new System.Drawing.Point(850, 709);
             this.TxtFind.Name = "TxtFind";
             this.TxtFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtFind.Size = new System.Drawing.Size(95, 23);
+            this.TxtFind.Size = new System.Drawing.Size(120, 23);
             this.TxtFind.TabIndex = 38;
-            this.TxtFind.Text = "Find in Eng";
+            this.TxtFind.Text = "查找文本";
             this.TxtFind.WordWrap = false;
             this.TxtFind.Enter += new System.EventHandler(this.TxtFind_Enter);
             this.TxtFind.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFind_KeyDown);
@@ -558,9 +535,9 @@
             // BtnAllToSimpChn
             // 
             this.BtnAllToSimpChn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAllToSimpChn.Location = new System.Drawing.Point(1036, 694);
+            this.BtnAllToSimpChn.Location = new System.Drawing.Point(1035, 666);
             this.BtnAllToSimpChn.Name = "BtnAllToSimpChn";
-            this.BtnAllToSimpChn.Size = new System.Drawing.Size(41, 23);
+            this.BtnAllToSimpChn.Size = new System.Drawing.Size(45, 23);
             this.BtnAllToSimpChn.TabIndex = 39;
             this.BtnAllToSimpChn.Text = "简中";
             this.BtnAllToSimpChn.UseVisualStyleBackColor = true;
@@ -569,7 +546,7 @@
             // BtnMergeAll
             // 
             this.BtnMergeAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnMergeAll.Location = new System.Drawing.Point(985, 693);
+            this.BtnMergeAll.Location = new System.Drawing.Point(984, 666);
             this.BtnMergeAll.Name = "BtnMergeAll";
             this.BtnMergeAll.Size = new System.Drawing.Size(45, 23);
             this.BtnMergeAll.TabIndex = 40;
@@ -581,7 +558,7 @@
             // 
             this.ChkCRLF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ChkCRLF.AutoSize = true;
-            this.ChkCRLF.Location = new System.Drawing.Point(921, 748);
+            this.ChkCRLF.Location = new System.Drawing.Point(988, 720);
             this.ChkCRLF.Name = "ChkCRLF";
             this.ChkCRLF.Size = new System.Drawing.Size(48, 16);
             this.ChkCRLF.TabIndex = 41;
@@ -601,18 +578,6 @@
             this.RadioNone.Text = "不使用";
             this.RadioNone.UseVisualStyleBackColor = true;
             // 
-            // LabHelp
-            // 
-            this.LabHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabHelp.AutoSize = true;
-            this.LabHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.LabHelp.Location = new System.Drawing.Point(937, 636);
-            this.LabHelp.Name = "LabHelp";
-            this.LabHelp.Size = new System.Drawing.Size(29, 12);
-            this.LabHelp.TabIndex = 33;
-            this.LabHelp.Text = "Help";
-            this.LabHelp.DoubleClick += new System.EventHandler(this.LabHelp_DoubleClick);
-            // 
             // FrmTranslator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -627,7 +592,6 @@
             this.Controls.Add(this.ChkSimplifiedChinese);
             this.Controls.Add(this.ChkSaveOnlyTranslated);
             this.Controls.Add(this.CombOldVersion);
-            this.Controls.Add(this.LabHelp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RadioBaidu);
             this.Controls.Add(this.RadioGoogle);
@@ -635,12 +599,10 @@
             this.Controls.Add(this.BtnOpenFileOriginal);
             this.Controls.Add(this.BtnOpenFileTranslated);
             this.Controls.Add(this.BtnAPItochnBox);
-            this.Controls.Add(this.LabAPI);
             this.Controls.Add(this.BtnApply);
             this.Controls.Add(this.TxtCHN);
             this.Controls.Add(this.TxtENG);
             this.Controls.Add(this.DfData);
-            this.Controls.Add(this.LabTo);
             this.Controls.Add(this.LabFROM);
             this.Controls.Add(this.LstFiles);
             this.Controls.Add(this.BtnSave);
@@ -665,12 +627,10 @@
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.ListBox LstFiles;
         private System.Windows.Forms.Label LabFROM;
-        private System.Windows.Forms.Label LabTo;
         private System.Windows.Forms.DataGridView DfData;
         private System.Windows.Forms.TextBox TxtENG;
         private System.Windows.Forms.TextBox TxtCHN;
         private System.Windows.Forms.Button BtnApply;
-        private System.Windows.Forms.Label LabAPI;
         private System.Windows.Forms.Button BtnAPItochnBox;
         private System.Windows.Forms.Button BtnOpenFileTranslated;
         private System.Windows.Forms.Button BtnOpenFileOriginal;
@@ -699,7 +659,6 @@
         private System.Windows.Forms.Button BtnMergeAll;
         private System.Windows.Forms.CheckBox ChkCRLF;
         private System.Windows.Forms.RadioButton RadioNone;
-        private System.Windows.Forms.Label LabHelp;
     }
 }
 

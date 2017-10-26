@@ -15,7 +15,6 @@ namespace pdx_ymltranslator
         List<YML> YMLText;
         Dictionary<string, string> UserDict = new Dictionary<string, string>();
         Dictionary<string, string> OldVersionDict = new Dictionary<string, string>();
-        ToolTip ToolTiptt = new ToolTip();
 
         public FrmTranslator()
         {
@@ -24,20 +23,10 @@ namespace pdx_ymltranslator
             FormInit();
             FunRefresh();
             UserDictInitialize();
-            SetToolTip();
             ComBOldVersionInitialize();
 
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-        }
-
-        private void SetToolTip()
-        {
-            ToolTiptt.AutomaticDelay = 100;
-            ToolTiptt.AutoPopDelay = 10000;
-            ToolTiptt.InitialDelay = 200;
-            ToolTiptt.ReshowDelay = 200;
-            ToolTiptt.SetToolTip(LabHelp, "Double Click: Open Github Web \n https://github.com/inkitter/pdx-ymltranslator \n Ctrl + ↓: Find Line to Translate \n Ctrl + ←: Refresh API Textbox");
         }
 
         private void ComBOldVersionInitialize()
@@ -97,22 +86,28 @@ namespace pdx_ymltranslator
             {
                 return;
             }
-            var reader = new StreamReader(File.OpenRead(StaticVars.UserDictCSV), Encoding.UTF8, true);
-            try
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
 
-                    if (!String.IsNullOrEmpty(values[0]) && !String.IsNullOrEmpty(values[1]))
+            using (var reader = new StreamReader(File.OpenRead(StaticVars.UserDictCSV), Encoding.UTF8, true))
+            {
+                try
+                {
+                    while (!reader.EndOfStream)
                     {
-                        UserDict.Add(values[0].ToLower(), values[1]);
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+
+                        //if (!String.IsNullOrEmpty(values[0]) && !String.IsNullOrEmpty(values[1]))
+                        if ((String.IsNullOrEmpty(values[0]) || String.IsNullOrEmpty(values[1])) == false)
+                        {
+                            UserDict.Add(values[0].ToLower(), values[1]);
+                        }
                     }
                 }
+                catch
+                {
+
+                }
             }
-            catch { }
-            reader.Close();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -222,11 +217,11 @@ namespace pdx_ymltranslator
             DfData.Columns[3].Width = 500;
             DfData.Columns[4].Width = 700;
 
-            DfData.Columns[0].HeaderText = "Variable Name";
-            DfData.Columns[1].HeaderText = "FROM";
-            DfData.Columns[2].HeaderText = "To";
+            DfData.Columns[0].HeaderText = "索引名";
+            DfData.Columns[1].HeaderText = "原文";
+            DfData.Columns[2].HeaderText = "译文";
             DfData.Columns[3].HeaderText = CombOldVersion.Text;
-            DfData.Columns[4].HeaderText = "Save Line Preview";
+            DfData.Columns[4].HeaderText = "结果预览";
 
             // 寻找原文与译文内容一致的，标记颜色，醒目便于确认需要翻译的部分。
             DfRefresh();
@@ -487,11 +482,6 @@ namespace pdx_ymltranslator
         {
             Button button = (Button)sender;
             FuncInsertSign(button.Text);
-        }
-
-        private void LabHelp_DoubleClick(object sender, EventArgs e)
-        {
-            YMLTools.OpenWithBrowser("", "Help");
         }
 
         private void CombOldVersion_SelectedIndexChanged(object sender, EventArgs e)
